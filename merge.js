@@ -12,12 +12,21 @@ function mergeSort(arr) {
 }
 
 function merge(leftArr, rightArr) {
-    result = [];
-    if (leftArr[0] >= rightArr[0]) {
-        return result.push(rightArr[0], leftArr[0]);
-    } else {
-        return result.push(leftArr[0], rightArr[0]);
+    const result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < leftArr.length && rightIndex < rightArr.length) {
+        if (leftArr[leftIndex] < rightArr[rightIndex]) {
+            result.push(leftArr[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(rightArr[rightIndex]);
+            rightIndex++;
+        }
     }
+
+    return result.concat(leftArr.slice(leftIndex)).concat(rightArr.slice(rightIndex));
 }
 
 console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
